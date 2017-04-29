@@ -12,6 +12,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.fancytank.ognia.muzeumwojska.api.RetrofitClient;
+import com.fancytank.ognia.muzeumwojska.api.SimpleService;
+
+import java.io.IOException;
+
 public class MainActivity extends AppCompatActivity {
     TextView tv ;
 
@@ -32,11 +37,22 @@ public class MainActivity extends AppCompatActivity {
         });
 
         tv = (TextView) findViewById(R.id.text);
+        initActivity();
+    }
+
+    private void initActivity() {
+
+//        new RetrofitClient();
     }
 
     @Override
     protected void onPostResume() {
         super.onPostResume();
+        try {
+            SimpleService.main();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
