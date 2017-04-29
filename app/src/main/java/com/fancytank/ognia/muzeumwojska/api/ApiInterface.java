@@ -1,6 +1,6 @@
 package com.fancytank.ognia.muzeumwojska.api;
 
-import com.fancytank.ognia.muzeumwojska.api.model.Model;
+import com.fancytank.ognia.muzeumwojska.api.dto.Model;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

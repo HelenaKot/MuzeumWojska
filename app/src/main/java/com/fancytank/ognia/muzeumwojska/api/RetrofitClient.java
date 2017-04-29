@@ -2,7 +2,7 @@ package com.fancytank.ognia.muzeumwojska.api;
 
 import android.util.Log;
 
-import com.fancytank.ognia.muzeumwojska.api.model.Model;
+import com.fancytank.ognia.muzeumwojska.api.dto.Model;
 
 import java.util.List;
 

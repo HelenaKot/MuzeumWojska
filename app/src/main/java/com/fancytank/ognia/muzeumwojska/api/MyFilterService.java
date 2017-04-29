@@ -9,12 +9,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Field;
 import retrofit2.http.GET;
-import retrofit2.http.Multipart;
-import retrofit2.http.POST;
-import retrofit2.http.Part;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public final class MyFilterService {
@@ -22,9 +17,17 @@ public final class MyFilterService {
 
     public static class Record {
         public final String[] post;
-        public final String[] get;
+        public final MyLife get;
 
-        public Record(String[] post, String[] get) {
+        class MyLife {
+            boolean status;
+
+            MyLife(Boolean value) {
+                status = value;
+            }
+        }
+
+        public Record(String[] post, MyLife get) {
             this.post = post;
             this.get = get;
         }
@@ -32,8 +35,14 @@ public final class MyFilterService {
 
     public interface MyInterface {
         @GET("/service/index.php?filters[0][field]=equals")
-        Call<Record> GetSth(@Query("filters[0][field]") String nameFilter,
-                            @Query("filters[0][value]") String value);
+        Call<Record> getFilter(@Query("filters[0][field]") String nameFilter,
+                               @Query("filters[0][value]") String value);
+
+        @GET("/service/index.php?mylife=false")
+        Call<Record> getSth();
+
+        @GET("/service?")
+        Call<Record> getQuery(@Query("sth") String sth);
     }
 
     public static void main() throws IOException {
@@ -55,7 +64,7 @@ public final class MyFilterService {
         MyInterface myService = retrofit.create(MyInterface.class);
 
         // Create a call instance for looking up Retrofit Records.
-        Call<Record> call = myService.GetSth("a", "brykiet");
+        Call<Record> call = myService.getQuery("\\?sthImpotrant");
 
         // Fetch and print a list of the Records to the library.
         call.enqueue(new Callback<Record>() {
@@ -63,6 +72,7 @@ public final class MyFilterService {
             public void onResponse(Call<Record> call, Response<Record> response) {
                 Record record = response.body();
                 System.out.println(record.toString());
+                System.out.println(record.get.status);
 //                System.out.println(record.description);
             }
 

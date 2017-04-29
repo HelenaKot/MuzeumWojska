@@ -1,4 +1,4 @@
-package com.fancytank.ognia.muzeumwojska.api.model;
+package com.fancytank.ognia.muzeumwojska.api.dto;
 
 import java.util.ArrayList;
 import java.util.List;
