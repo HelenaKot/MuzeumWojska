@@ -12,8 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.fancytank.ognia.muzeumwojska.api.RetrofitClient;
-import com.fancytank.ognia.muzeumwojska.api.SimpleService;
+import com.fancytank.ognia.muzeumwojska.api.MyFilterService;
 
 import java.io.IOException;
 
@@ -49,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onPostResume() {
         super.onPostResume();
         try {
-            SimpleService.main();
+            MyFilterService.main();
         } catch (IOException e) {
             e.printStackTrace();
         }
