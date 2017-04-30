@@ -6,37 +6,42 @@
     android:layout_height="match_parent"
     tools:context="com.fancytank.ognia.muzeumwojska.MainActivity">
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/dark_color"
+        android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scaleType="fitStart"
-            android:src="@drawable/p9270755" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.7">
 
-    </FrameLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/rocket_carrier" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/gradient_dark" />
+
+        </FrameLayout>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="0.3" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="20dp"
         android:orientation="vertical">
-
-        <!--&lt;!&ndash;<android.support.design.widget.AppBarLayout&ndash;&gt;-->
-        <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
-        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
-        <!--&lt;!&ndash;android:theme="@style/AppTheme.AppBarOverlay">&ndash;&gt;-->
-
-        <!--&lt;!&ndash;<android.support.v7.widget.Toolbar&ndash;&gt;-->
-        <!--&lt;!&ndash;android:id="@+id/toolbar"&ndash;&gt;-->
-        <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
-        <!--&lt;!&ndash;android:layout_height="?attr/actionBarSize"&ndash;&gt;-->
-        <!--&lt;!&ndash;android:background="?attr/colorPrimary"&ndash;&gt;-->
-        <!--&lt;!&ndash;app:popupTheme="@style/AppTheme.PopupOverlay" />&ndash;&gt;-->
-
-        <!--&lt;!&ndash;</android.support.design.widget.AppBarLayout>&ndash;&gt;-->
 
         <include layout="@layout/content_main" />
 
