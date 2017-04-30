@@ -25,7 +25,10 @@ public class DetailsView extends AppCompatActivity {
         webView = (WebView) findViewById(R.id.web_view);
 
         data = (DisplayUnit) getIntent().getExtras().getSerializable(DisplayListAdapter.TAG);
-        filldata(data);
+        if (data != null) {
+            setTitle(data.getTitle());
+            filldata(data);
+        }
     }
 
     private void filldata(DisplayUnit data) {
@@ -34,14 +37,15 @@ public class DetailsView extends AppCompatActivity {
             pv.setData(this, dataItem);
             container.addView(pv);
         }
+        if (data.coordinates != null)
+            loadMapwithAdr(data.coordinates);
     }
 
     public void showLocalization(View view) {
-        loadMapwithAdr(data.coordinates);
+        webView.setVisibility(View.VISIBLE);
     }
 
     private void loadMapwithAdr(String addrs) {
-        webView.setVisibility(View.VISIBLE);
         webView.setWebViewClient(new WebViewClient());
         webView.getSettings().setJavaScriptEnabled(true);
         webView.loadUrl("http://maps.google.com/maps?q=" + addrs);

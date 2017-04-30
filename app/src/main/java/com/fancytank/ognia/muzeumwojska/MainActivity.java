@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ScrollView;
 import android.widget.Toast;
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     DisplayListAdapter adapter;
     ScrollView scrollView;
     private boolean inited;
-    public MyFilterService service;
+    static public MyFilterService service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +56,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void fillWithData() {
-        DisplayUnit[] array = {new DisplayUnit("zz_123", "Lorem Ipsum", Category.TANK),
+        DisplayUnit[] array = {new DisplayUnit("1", "Renault  FT 17", Category.TANK),
+                new DisplayUnit("2", "Cruiser Tank Mk I", Category.TANK),
                 new DisplayUnit("zz_124", "Lorem Ipsum", Category.BTR),
                 new DisplayUnit("zz_124", "Lorem Ipsum", Category.BTR),
                 new DisplayUnit("zz_127", "Lorem Ipsum Dolor", Category.PLANE),
@@ -97,12 +99,16 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
             } else {
                 Log.d("MainActivity", "Scanned");
-                service.sendRequestForId(result.getContents(), this);
+                openDetailFragment(result.getContents());
             }
         } else {
             // This is important, otherwise the result will not be passed to the fragment
             super.onActivityResult(requestCode, resultCode, data);
         }
+    }
+
+    private void openDetailFragment(String id) {
+        service.sendRequestForId(id, this);
     }
 
 }

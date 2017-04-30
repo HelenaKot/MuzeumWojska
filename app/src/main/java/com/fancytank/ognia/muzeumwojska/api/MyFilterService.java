@@ -59,7 +59,7 @@ public final class MyFilterService {
 
     public void sendRequestForId(String id, final Context context) {
         // Create a call instance for looking up Retrofit Records.
-        Call<DisplayItemDto> call = myService.getDetailsOf("1");
+        Call<DisplayItemDto> call = myService.getDetailsOf(id);
 
         // Fetch and print a list of the Records to the library.
         call.enqueue(new Callback<DisplayItemDto>() {
@@ -68,8 +68,8 @@ public final class MyFilterService {
                 DisplayItemDto record = response.body();
                 try {
                     openItem(serialize(record), context);
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
+                } catch (Exception e) {
+//                    e.printStackTrace();
                 }
             }
 
@@ -80,7 +80,7 @@ public final class MyFilterService {
         });
     }
 
-    DisplayUnit serialize(DisplayItemDto dto) throws UnsupportedEncodingException {
+    DisplayUnit serialize(DisplayItemDto dto) throws Exception {
         DisplayUnit output = new DisplayUnit(dto.id, dto.name, Category.TANK);
         output.coordinates = dto.gps_position;
         String desc =  new String(dto.description.getBytes(), "UTF-8");

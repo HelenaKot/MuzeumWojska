@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.fancytank.ognia.muzeumwojska.DetailsView;
+import com.fancytank.ognia.muzeumwojska.MainActivity;
 import com.fancytank.ognia.muzeumwojska.R;
 import com.fancytank.ognia.muzeumwojska.api.model.DisplayUnit;
 
@@ -38,7 +39,7 @@ public class DisplayListAdapter extends RecyclerView.Adapter<DisplayUnitViewHold
     }
 
     @Override
-    public void onBindViewHolder(DisplayUnitViewHolder holder, int position) {
+    public void onBindViewHolder(DisplayUnitViewHolder holder, final int position) {
         final DisplayUnit unit = data.get(position);
         holder.title.setText(unit.getTitle());
         if (unit.hasImage()) {
@@ -47,15 +48,9 @@ public class DisplayListAdapter extends RecyclerView.Adapter<DisplayUnitViewHold
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                itemClicked(unit);
+                MainActivity.service.sendRequestForId(data.get(position).getId(), context);
             }
         });
-    }
-
-    void itemClicked(DisplayUnit unit) {
-        Intent intent = new Intent(context, DetailsView.class);
-        intent.putExtra(TAG, unit);
-        context.startActivity(intent);
     }
 
     @Override
