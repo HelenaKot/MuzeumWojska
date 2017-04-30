@@ -20,7 +20,6 @@ import com.fancytank.ognia.muzeumwojska.list.DisplayListAdapter;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-import java.io.IOException;
 import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     DisplayListAdapter adapter;
     ScrollView scrollView;
     private boolean inited;
+    public MyFilterService service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        service = new MyFilterService();
         final Activity context = this;
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,13 +73,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPostResume() {
         super.onPostResume();
-        try {
-            MyFilterService.main();
-            if (!inited)
-                loadAfter(300);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        if (!inited)
+            loadAfter(300);
     }
 
     private void loadAfter(int amount) {
@@ -101,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
             } else {
                 Log.d("MainActivity", "Scanned");
-                Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
+                service.sendRequestForId(result.getContents(), this);
             }
         } else {
             // This is important, otherwise the result will not be passed to the fragment
@@ -109,9 +105,4 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    void openItem(DisplayUnit unit) {
-        Intent intent = new Intent(this, DetailsView.class);
-        intent.putExtra(DisplayListAdapter.TAG, unit);
-        startActivity(intent);
-    }
 }

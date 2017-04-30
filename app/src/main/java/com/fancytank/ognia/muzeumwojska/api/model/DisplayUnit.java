@@ -12,7 +12,7 @@ public class DisplayUnit implements Serializable {
     Category image;
     List<DisplayParagraph> desc = new ArrayList<>();
     //todo coordintes
-    String coordinates;
+    public String coordinates;
 
     public DisplayUnit(String id, String title) {
         this.id = id;
@@ -44,6 +44,10 @@ public class DisplayUnit implements Serializable {
 
     public String getCoordinates() {
         return coordinates;
+    }
+
+    public void addDesc(DisplayParagraph paragraph) {
+        desc.add(paragraph);
     }
 
     public

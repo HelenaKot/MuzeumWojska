@@ -33,7 +33,7 @@ public class ParagraphView extends FrameLayout {
         Picasso.with(context)
                 .load(data.getImgUri())
 //                .resize(50, 50)
-                .centerCrop()
+//                .centerCrop()
                 .into(image);
         text.setText(data.getDesc());
     }

@@ -1,15 +1,15 @@
 package com.fancytank.ognia.muzeumwojska.api.dto;
 
 public class DisplayItemDto {
-    String id;
-    String name;
-    String image_url;
-    String short_description;
-    String description;
-    String localization_name;
-    String localization_room;
-    String category_id;
-    String source_data_from;
-    String gps_position;
+    public String id;
+    public String name;
+    public String image_url;
+    public String short_description;
+    public String description;
+    public String localization_name;
+    public String localization_room;
+    public String category_id;
+    public String source_data_from;
+    public String gps_position;
 
 }
