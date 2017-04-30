@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.fancytank.ognia.muzeumwojska.R;
 import com.fancytank.ognia.muzeumwojska.api.model.DisplayParagraph;
+import com.squareup.picasso.Picasso;
 
 public class ParagraphView extends FrameLayout {
     ImageView image;
@@ -28,8 +29,13 @@ public class ParagraphView extends FrameLayout {
         init(context);
     }
 
-    public void setData(DisplayParagraph data) {
-
+    public void setData(Context context, DisplayParagraph data) {
+        Picasso.with(context)
+                .load(data.getImgUri())
+//                .resize(50, 50)
+                .centerCrop()
+                .into(image);
+        text.setText(data.getDesc());
     }
 
     private void init(Context context) {

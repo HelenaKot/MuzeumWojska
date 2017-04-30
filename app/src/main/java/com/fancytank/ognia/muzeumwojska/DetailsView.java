@@ -7,6 +7,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 
+import com.fancytank.ognia.muzeumwojska.api.model.DisplayParagraph;
 import com.fancytank.ognia.muzeumwojska.api.model.DisplayUnit;
 import com.fancytank.ognia.muzeumwojska.details.ParagraphView;
 import com.fancytank.ognia.muzeumwojska.list.DisplayListAdapter;
@@ -23,12 +24,16 @@ public class DetailsView extends AppCompatActivity {
         container = (LinearLayout) findViewById(R.id.container);
         webView = (WebView) findViewById(R.id.web_view);
 
-        getIntent().getExtras().getSerializable(DisplayListAdapter.TAG);
+        data = (DisplayUnit) getIntent().getExtras().getSerializable(DisplayListAdapter.TAG);
         filldata(data);
     }
 
     private void filldata(DisplayUnit data) {
-        container.addView(new ParagraphView(this));
+        for (DisplayParagraph dataItem : data.getDesc()) {
+            ParagraphView pv = new ParagraphView(this);
+            pv.setData(this, dataItem);
+            container.addView(pv);
+        }
     }
 
     public void showLocalization(View view) {

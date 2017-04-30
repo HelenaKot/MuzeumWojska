@@ -6,12 +6,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DisplayUnit implements Serializable{
-    private final String id;
-    private final String title;
-    private Category image;
-    private List<DisplayParagraph> desc = new ArrayList<>();
+public class DisplayUnit implements Serializable {
+    final String id;
+    final String title;
+    Category image;
+    List<DisplayParagraph> desc = new ArrayList<>();
     //todo coordintes
+    String coordinates;
 
     public DisplayUnit(String id, String title) {
         this.id = id;
@@ -39,6 +40,10 @@ public class DisplayUnit implements Serializable{
 
     public boolean hasImage() {
         return image != null;
+    }
+
+    public String getCoordinates() {
+        return coordinates;
     }
 
     public

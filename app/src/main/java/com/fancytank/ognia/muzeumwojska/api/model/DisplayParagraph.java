@@ -10,4 +10,12 @@ public class DisplayParagraph implements Serializable {
         this.desc = desc;
         this.imgUri = imgUrl;
     }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public String getImgUri() {
+        return imgUri;
+    }
 }
