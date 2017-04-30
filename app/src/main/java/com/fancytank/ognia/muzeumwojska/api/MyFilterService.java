@@ -84,6 +84,7 @@ public final class MyFilterService {
         DisplayUnit output = new DisplayUnit(dto.id, dto.name, Category.TANK);
         output.coordinates = dto.gps_position;
         String desc =  new String(dto.description.getBytes(), "UTF-8");
+//        String desc = dto.description;
         output.addDesc(new DisplayParagraph(dto.image_url, desc));
         return output;
     }

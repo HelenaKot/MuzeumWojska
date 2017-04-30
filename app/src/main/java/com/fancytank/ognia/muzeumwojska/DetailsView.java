@@ -29,6 +29,7 @@ public class DetailsView extends AppCompatActivity {
             setTitle(data.getTitle());
             filldata(data);
         }
+        webView.setVisibility(View.GONE);
     }
 
     private void filldata(DisplayUnit data) {
