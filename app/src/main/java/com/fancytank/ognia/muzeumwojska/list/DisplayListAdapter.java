@@ -5,11 +5,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.fancytank.ognia.muzeumwojska.R;
 import com.fancytank.ognia.muzeumwojska.api.model.DisplayUnit;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DisplayListAdapter extends RecyclerView.Adapter<DisplayUnitViewHolder> {
@@ -21,6 +23,11 @@ public class DisplayListAdapter extends RecyclerView.Adapter<DisplayUnitViewHold
         this.context = context;
     }
 
+    public DisplayListAdapter(Context context) {
+        this.data = new ArrayList<>();
+        this.context = context;
+    }
+
     @Override
     public DisplayUnitViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.display_list_view, parent, false);
@@ -29,7 +36,11 @@ public class DisplayListAdapter extends RecyclerView.Adapter<DisplayUnitViewHold
 
     @Override
     public void onBindViewHolder(DisplayUnitViewHolder holder, int position) {
-        holder.title.setText(data.get(position).getTitle());
+        DisplayUnit unit = data.get(position);
+        holder.title.setText(unit.getTitle());
+        if (unit.hasImage()) {
+            holder.image.setImageResource(unit.getImage());
+        }
     }
 
     @Override
@@ -37,13 +48,18 @@ public class DisplayListAdapter extends RecyclerView.Adapter<DisplayUnitViewHold
         return data.size();
     }
 
+    public List<DisplayUnit> getData() {
+        return data;
+    }
 }
 
 class DisplayUnitViewHolder extends RecyclerView.ViewHolder {
     TextView title;
+    ImageView image;
 
     public DisplayUnitViewHolder(View itemView) {
         super(itemView);
         title = (TextView) itemView.findViewById(R.id.title);
+        image = (ImageView) itemView.findViewById(R.id.image);
     }
 }
