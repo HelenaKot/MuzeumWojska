@@ -21,7 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/rocket_carrier" />
+                android:src="@drawable/muzeum_techniki_wojskowej_10" />
 
             <View
                 android:layout_width="match_parent"

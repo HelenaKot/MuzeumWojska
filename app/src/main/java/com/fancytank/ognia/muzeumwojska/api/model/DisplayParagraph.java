@@ -1,6 +1,8 @@
 package com.fancytank.ognia.muzeumwojska.api.model;
 
-public class DisplayParagraph {
+import java.io.Serializable;
+
+public class DisplayParagraph implements Serializable {
     private final String desc;
     private final String imgUri;
 

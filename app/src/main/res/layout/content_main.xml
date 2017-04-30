@@ -1,29 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.fancytank.ognia.muzeumwojska.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/display_items"
+    <ScrollView
+        android:id="@+id/scroll_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="Hello World!"
-        android:layout_above="@+id/frameLayout"
-        android:layout_alignParentTop="true" />
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:padding="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/ic_rank" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Zwiedzamy\nOkopy"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@android:color/white"
+                    android:textSize="36dp" />
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/display_items"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_above="@+id/frameLayout"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:text="Hello World!" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
     <FrameLayout
+        android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="86dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:background="@color/gray"
-        android:id="@+id/frameLayout">
+        android:background="@color/gray">
 
         <TextView
             android:layout_width="wrap_content"
@@ -35,4 +75,5 @@
             android:textColor="@android:color/white" />
 
     </FrameLayout>
-</RelativeLayout>
+
+</LinearLayout>
