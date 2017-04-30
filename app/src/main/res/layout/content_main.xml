@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.fancytank.ognia.muzeumwojska.MainActivity"
     tools:showIn="@layout/activity_main">
@@ -12,12 +11,11 @@
     <ScrollView
         android:id="@+id/scroll_view"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:orientation="vertical">
 
@@ -48,11 +46,11 @@
                 android:id="@+id/display_items"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_above="@+id/frameLayout"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_weight="1"
-                android:layout_marginBottom="86dp"/>
+                android:layout_weight="1" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="140dp" />
 
         </LinearLayout>
 
@@ -62,14 +60,15 @@
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="86dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:background="@color/gray">
+        android:layout_gravity="bottom"
+        android:alpha="100"
+        android:background="@drawable/darker_dark_gradient">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right|center_vertical"
+
             android:layout_marginRight="96dp"
             android:text="zeskanuj tabliczkę"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -77,4 +76,4 @@
 
     </FrameLayout>
 
-</LinearLayout>
+</FrameLayout>
