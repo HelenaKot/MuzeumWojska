@@ -108,4 +108,10 @@ public class MainActivity extends AppCompatActivity {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
+
+    void openItem(DisplayUnit unit) {
+        Intent intent = new Intent(this, DetailsView.class);
+        intent.putExtra(DisplayListAdapter.TAG, unit);
+        startActivity(intent);
+    }
 }
