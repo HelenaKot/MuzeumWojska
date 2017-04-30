@@ -10,6 +10,8 @@ import com.fancytank.ognia.muzeumwojska.api.model.DisplayParagraph;
 import com.fancytank.ognia.muzeumwojska.api.model.DisplayUnit;
 import com.fancytank.ognia.muzeumwojska.list.DisplayListAdapter;
 
+import java.io.UnsupportedEncodingException;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
@@ -64,7 +66,11 @@ public final class MyFilterService {
             @Override
             public void onResponse(Call<DisplayItemDto> call, Response<DisplayItemDto> response) {
                 DisplayItemDto record = response.body();
-                openItem(serialize(record), context);
+                try {
+                    openItem(serialize(record), context);
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
@@ -74,10 +80,11 @@ public final class MyFilterService {
         });
     }
 
-    DisplayUnit serialize(DisplayItemDto dto) {
+    DisplayUnit serialize(DisplayItemDto dto) throws UnsupportedEncodingException {
         DisplayUnit output = new DisplayUnit(dto.id, dto.name, Category.TANK);
         output.coordinates = dto.gps_position;
-        output.addDesc(new DisplayParagraph(dto.image_url, dto.description));
+        String desc =  new String(dto.description.getBytes(), "UTF-8");
+        output.addDesc(new DisplayParagraph(dto.image_url, desc));
         return output;
     }
 

@@ -37,12 +37,11 @@ public class DetailsView extends AppCompatActivity {
     }
 
     public void showLocalization(View view) {
-        loadMapwithAdr("52.182242,21.065728");
+        loadMapwithAdr(data.coordinates);
     }
 
     private void loadMapwithAdr(String addrs) {
         webView.setVisibility(View.VISIBLE);
-        final String url = "http://maps.google.com/maps";
         webView.setWebViewClient(new WebViewClient());
         webView.getSettings().setJavaScriptEnabled(true);
         webView.loadUrl("http://maps.google.com/maps?q=" + addrs);
