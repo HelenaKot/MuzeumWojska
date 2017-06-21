@@ -6,6 +6,7 @@ import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 import com.fancytank.ognia.muzeumwojska.api.model.DisplayParagraph;
 import com.fancytank.ognia.muzeumwojska.api.model.DisplayUnit;
@@ -16,6 +17,7 @@ public class DetailsView extends AppCompatActivity {
     LinearLayout container;
     DisplayUnit data;
     WebView webView;
+    ScrollView scrollView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +25,7 @@ public class DetailsView extends AppCompatActivity {
         setContentView(R.layout.activity_details_view);
         container = (LinearLayout) findViewById(R.id.container);
         webView = (WebView) findViewById(R.id.web_view);
+        scrollView = (ScrollView) findViewById(R.id.scroll_view);
 
         data = (DisplayUnit) getIntent().getExtras().getSerializable(DisplayListAdapter.TAG);
         if (data != null) {
@@ -44,6 +47,12 @@ public class DetailsView extends AppCompatActivity {
 
     public void showLocalization(View view) {
         webView.setVisibility(View.VISIBLE);
+        scrollView.post(new Runnable() {
+            @Override
+            public void run() {
+                scrollView.fullScroll(ScrollView.FOCUS_DOWN);
+            }
+        });
     }
 
     private void loadMapwithAdr(String addrs) {
